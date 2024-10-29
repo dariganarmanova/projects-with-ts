@@ -21,19 +21,28 @@ class ToDoList {
     };
     this.tasks.push(newTask);
     this.renderTasks();
+    console.log(newTask.id);
   }
 
   removeTaskById(id: number) {
     this.tasks = this.tasks.filter((todo) => todo.id !== id);
+    this.renderTasks();
   }
 
   getTask() {
     return this.tasks;
   }
   renderTasks() {
+    list.innerHTML = "";
     this.tasks.forEach((task) => {
       const li = document.createElement("li");
       li.textContent = task.text;
+      const removeButton = document.createElement("button");
+      removeButton.textContent = "Remove";
+      removeButton.addEventListener("click", () => {
+        this.removeTaskById(task.id);
+      });
+      li.appendChild(removeButton);
       list.appendChild(li);
     });
   }

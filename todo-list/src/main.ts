@@ -14,6 +14,7 @@ class ToDoList {
   private nextId: number = 1;
 
   //methods
+
   //create a resource
   addTask(text: string) {
     const newTask: Task = {
@@ -23,7 +24,6 @@ class ToDoList {
     };
     this.tasks.push(newTask);
     this.renderTasks();
-    console.log(newTask.id);
   }
 
   //remove a resource
@@ -49,6 +49,7 @@ class ToDoList {
       const li = document.createElement("li");
       li.textContent = task.text;
 
+      //dynamically adding the buttons to the tasks currently being created
       const removeButton = document.createElement("button");
       removeButton.textContent = "Remove";
       removeButton.addEventListener("click", () => {

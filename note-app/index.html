@@ -5,12 +5,20 @@
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>note dashboard</title>
+    <link rel="stylesheet" href="./src/style.css" />
   </head>
   <body>
     <div id="app"></div>
-    <input id="notesInput">Please input your note</input>
-    <button id="submit">Submit</button>
-    <ul id="list"></ul>
+    <div class="parent">
+      <div class="container">
+        <label>Please input your note</label>
+        <input id="notesInput"></input>
+        <div class="buttonWrapper">        
+          <button id="submit">Submit</button>
+        </div>
+        <ul id="list"></ul>
+      </div>
+    </div>
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>

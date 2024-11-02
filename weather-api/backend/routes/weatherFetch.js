@@ -36,4 +36,3 @@ app.post('/city', async (req, res) => {
 })
 
 module.exports = app
-//API_KEY = "99ac6437b189e55fcdfaa8f3735a32e0"

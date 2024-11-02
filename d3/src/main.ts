@@ -32,11 +32,36 @@ const xScale = d3
   .padding(0.1);
 
 const yScale = d3
-  .scaleLinear()
+  .scaleLinear() //defines the min and max input values for the scale
   .domain([0, d3.max(data, (d) => d.value) || 0])
   .range([height - margin.top - margin.bottom, 0]);
 
+//here this groups all the elements?
 svg
   .append("g")
   .attr("transform", `translate(0, ${height - margin.top - margin.bottom})`)
   .call(d3.axisBottom(xScale));
+
+svg.append("g").call(d3.axisLeft(yScale));
+
+const bars = svg
+  .selectAll<SVGRectElement, Data>("rect")
+  .data(data, (d: Data) => d.category);
+
+bars
+  .enter()
+  .append("rect")
+  .attr("x", (d) => xScale(d.category) as number)
+  .attr("width", xScale.bandwidth()) //defines the width of each band or bar on the x-axis
+  .attr("y", (d) => yScale(d.value)) //y attribute -> vertical position of the top of each bar
+  .attr("height", (d) => height - margin.top - margin.bottom - yScale(d.value))
+  .attr("fill", "steelblue");
+
+bars
+  .transition()
+  .duration(750)
+  .attr("x", (d) => xScale(d.category) as number)
+  .attr("width", xScale.bandwidth())
+  .attr("y", (d) => yScale(d.value))
+  .attr("height", (d) => height - margin.top - margin.bottom - yScale(d.value))
+  .attr("fill", "steelblue");

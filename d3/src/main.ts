@@ -6,7 +6,7 @@ interface Data {
 }
 
 const data: Data[] = [
-  { category: "A", value: 30 },
+  { category: "A", value: 70 },
   { category: "B", value: 50 },
   { category: "C", value: 70 },
   { category: "D", value: 80 },
@@ -24,6 +24,7 @@ const svg = d3
   .attr("height", height)
   .append("g")
   .attr("transform", `translate(${margin.left}, ${margin.top})`);
+//inside attr first attribute name that d3 recognizes second is the actual value
 
 const xScale = d3
   .scaleBand()
@@ -48,6 +49,7 @@ const bars = svg
   .selectAll<SVGRectElement, Data>("rect")
   .data(data, (d: Data) => d.category);
 
+//for new data points
 bars
   .enter()
   .append("rect")
